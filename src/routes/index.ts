@@ -1,18 +1,14 @@
+import { Service as DIService } from 'typedi';
 import { Router } from 'express';
 import { UserRoutes } from './user';
 
+@DIService()
 class Routes {
-  private router: Router = Router();
-  private userRoutes: UserRoutes = new UserRoutes();
+  private router: Router;
 
-  constructor() {
-    this.initializeRoutes();
-  }
-
-  private initializeRoutes(): void {
-    const { router: userRoutes } = this.userRoutes;
-
-    this.router.use(userRoutes);
+  constructor(userRoutes: UserRoutes) {
+    this.router = Router();
+    this.router.use(userRoutes.getRouter());
   }
 
   public getRouter(): Router {
@@ -20,6 +16,4 @@ class Routes {
   }
 }
 
-const routes = new Routes().getRouter();
-
-export default routes;
+export default Routes ;

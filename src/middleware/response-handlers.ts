@@ -1,40 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-namespace */
-declare global {
-  namespace Express {
-    export interface Response {
-      postRequest: () => Response;
-      getRequest: (data: any) => Response;
-      updated: () => Response;
-      badRequest: (error: any) => Response;
-      unAuthorized: () => Response;
-      forbidden: () => Response;
-      notFound: () => Response;
-      serverError: () => Response;
-    }
-  }
-}
 
 import { Request, Response, NextFunction } from 'express';
 import AppConstants from '../utils/constant';
 
-const { RESPONSE_ERROR: { VALIDATION_ERROR, SERVER_ERROR, INTERNAL_SERVER_ERROR, NOT_AUTHORIZED, NOT_FOUND, FORBIDDEN }, ERROR } = AppConstants;
+const { RESPONSE_ERROR: { SERVER_ERROR, INTERNAL_SERVER_ERROR, NOT_AUTHORIZED, NOT_FOUND, FORBIDDEN }, ERROR } = AppConstants;
 
 export const responseMiddleware = (req: Request, res: Response, next: NextFunction): void => {
 
   res.postRequest = () => {
-    return res.status(201);
+
+    return res.status(201).json();
   }
   res.getRequest = (data: any) => {
     return res.status(200).json(data);
   };
 
   res.updated = () => {
-    return res.status(204);
+    return res.status(204).json();
   };
 
-  res.badRequest = (error: string) => {
-    return res.status(400).json({ name: VALIDATION_ERROR, error });
+  res.badRequest = (name: string, error: string) => {
+    return res.status(400).json({ name, error });
   };
 
   res.unAuthorized = () => {

@@ -1,48 +1,64 @@
-import { Request as ExpressRequest, Response } from 'express'
+import Container, { Service as DIService } from 'typedi';
+import { Request, Response } from 'express'
 import UserSchema from '../validation/user';
+import { IUserController }  from '../interfaces';
+import Services from '../services';
+import AppConstants from '../utils/constant';
 
-const { createSchema } = UserSchema;
+const { HEADERS: { PUBLIC_ID }, RESPONSE_ERROR: { VALIDATION_ERROR, SERVICE_ERROR } } = AppConstants;
 
-interface Request extends ExpressRequest {
-  user: {
-    userId: string;
-  };
-}
+@DIService()
+class UserController implements IUserController {
+  private userServices;
+  private createSchema;
 
-class UserController {
-  public create = async (req: ExpressRequest, res: Response) => {
+  constructor(services: Services = Container.get(Services)) {
+    this.userServices = services.userServices;
+    this.createSchema = UserSchema.createSchema;
+  }
+
+  public create = async (req: Request, res: Response) => {
     try {
-      const { body, user: { userId = '' } = {} } = req as Request;
+      const { body, user: { userId = '' } = {} } = req;
       const data = { ...body, userId };
 
-      const { error } = createSchema.create.validate(data);
+      const { error } = this.createSchema.create.validate(data);
 
       if (error) {
         const { details } = error;
 
-        return res.badRequest(details);
+        return res.badRequest(VALIDATION_ERROR, details);
       }
 
+      const { doc, errors }: ServiceResponse = await this.userServices.create(data);
+
+      if (errors) {
+        return res.badRequest(SERVICE_ERROR ,errors);
+      }
+
+      const { publicId } = doc;
+
+      res.setHeader(PUBLIC_ID, publicId);
+
       return res.postRequest();
-    }
-    catch (error) {
+
+    } catch (error) {
       return res.serverError();
     }
   }
 
-  public getList =async  (req: ExpressRequest, res: Response) => {
+
+  public getList =async  (req: Request, res: Response) => {
     return res.getRequest({ message: 'User list' });
   }
 
-  public getDetailsById = async (req: ExpressRequest, res: Response) => {
-    return res.status(200).json({ message: 'User details' });
+  public getDetailsById = async (req: Request, res: Response) => {
+    return res.updated();
   }
 
-  public update = async (req: ExpressRequest, res: Response) => {
-    return res.status(200).json({ message: 'User updated' });
+  public update = async (req: Request, res: Response) => {
+    return res.updated();
   }
 }
 
-const userController = new UserController();
-
-export default userController;
+export default UserController;

@@ -1,6 +1,8 @@
+import 'reflect-metadata';
+import { Container } from 'typedi';
 import express, { Application } from 'express';
-import routes from './routes';
 import { responseMiddleware } from './middleware/response-handlers';
+import Routes from './routes';
 
 class App {
   public app: Application;
@@ -18,7 +20,9 @@ class App {
   }
 
   private setRoutes(): void {
-    this.app.use('/v1/users', routes);
+    const routes = Container.get(Routes);
+
+    this.app.use('/v1/users', routes.getRouter());
   }
 
   private start(): void {

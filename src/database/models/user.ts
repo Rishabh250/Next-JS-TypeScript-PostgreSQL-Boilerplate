@@ -8,7 +8,7 @@ interface UserAttributes {
     email: string;
     hashed_password: string;
     google_id?: string;
-    salt: number;
+    salt: string;
     password_validity: Date;
     created_by?: UUID;
     updated_by?: UUID;
@@ -33,6 +33,7 @@ export default  (sequelize: Sequelize) => {
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     hashed_password: {
@@ -43,9 +44,8 @@ export default  (sequelize: Sequelize) => {
       type: DataTypes.STRING,
     },
     salt: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 10
+      type: DataTypes.STRING,
+      allowNull: false
     },
     password_validity: {
       type: DataTypes.DATE,

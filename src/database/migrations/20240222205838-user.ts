@@ -24,6 +24,7 @@ module.exports = {
       },
       email: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
       },
       hashed_password: {
@@ -34,7 +35,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       salt: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 10,
       },
