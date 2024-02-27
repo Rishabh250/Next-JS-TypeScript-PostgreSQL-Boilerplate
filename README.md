@@ -30,17 +30,19 @@ This TypeScript-based project utilizes Express for managing HTTP requests and fo
 - **Middleware**
 
 ### Folder Structure
-src/
-|- controllers/
-|- database/
-|- interfaces/
-|- middleware/
-|- routes/
-|- services/
-|- utils/
-|- validation/
-|- config/
-|- tests/
+```bash
+ src/
+  |- controllers/
+  |- database/
+  |- interfaces/
+  |- middleware/
+  |- routes/
+  |- services/
+  |- utils/
+  |- validation/
+  |- config/
+  |- tests/
+```
 
 
 ### Code Review Highlights
@@ -51,13 +53,31 @@ src/
 ## Installation and Server Start Commands
 
 To install dependencies:
+```bash
 npm i
+```
 
 To start the server:
+```bash
 npm run start
+```
 
 ## Migrations
 Migrations are handled by Sequelize. To create a new migration, run:
+```bash
 npx sequelize-cli migration:generate --name <migration-name>
+```
+
+To run migrations
+```bash
+npm run migrate
+```
+
+## Test Cases
+
+To run rest case
+```bash
+npm test
+```
 
 
