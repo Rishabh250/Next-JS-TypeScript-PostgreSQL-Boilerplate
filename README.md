@@ -1,36 +1,63 @@
 # AutoBlogGen: Advanced Blog Automation System
 
-Brief description of the project.
+## Description
+AutoBlogGen is a cutting-edge blog automation system designed to streamline the process of blog creation, management, and deployment. Built with TypeScript and Express, this backend application offers a robust solution for handling HTTP requests with efficiency and ease. The system is architected to ensure a clear separation of concerns, employing controllers, services, routes, models, and middleware for organized and maintainable code.
 
 ## Application Configuration
 
-The application configuration is managed through environment variables and a configuration file located at `config/index.ts`. The configuration includes the application version, name, domain, host, port, and database settings.
-
 ### General Configuration
-
-- **Version**: Defined by `VERSION` environment variable or the version from `package.json`.
-- **Name**: Defined by `NAME` environment variable or the name from `package.json`.
-- **Domain**: Defined by `DOMAIN` environment variable or defaults to `http://localhost:3000`.
-- **Host**: Defined by `HOST` environment variable or defaults to `0.0.0.0`.
-- **Port**: Defined by `PORT` environment variable or defaults to `3000`.
+- **Version**: Controlled by the `VERSION` environment variable or falls back to the version specified in `package.json`.
+- **Name**: Set via the `NAME` environment variable or defaults to the name in `package.json`.
+- **Domain**: Defined by the `DOMAIN` environment variable or defaults to `http://localhost:3000`.
+- **Host**: Configured through the `HOST` environment variable or defaults to `0.0.0.0`.
+- **Port**: Determined by the `PORT` environment variable or defaults to `3000`.
 
 ### Database Configuration
+Database settings are specified under `src/database/config/config.js`, catering to development, test, and production environments through environment variables.
+- **Database Name**: `DB_NAME` environment variable or `blogs_local` by default.
+- **User**: `DB_USER` environment variable or `postgres` as the default.
+- **Password**: Set via `DB_PASSWORD` environment variable or `1234` by default.
+- **Host**: `DB_HOST` environment variable or defaults to `localhost`.
+- **Port**: Defined by `DB_PORT` environment variable or `5432` by default.
 
-The database configuration is specified in `src/database/config/config.js` and includes settings for development, test, and production environments. It uses environment variables for database credentials and connection details.
+## Project Documentation
+This TypeScript-based project utilizes Express for managing HTTP requests and follows a structured architecture to maintain a clean separation of concerns. The key components include:
 
-- **Database Name**: Defined by `DB_NAME` environment variable or defaults to `blogs_local`.
-- **User**: Defined by `DB_USER` environment variable or defaults to `postgres`.
-- **Password**: Defined by `DB_PASSWORD` environment variable or defaults to `1234`.
-- **Host**: Defined by `DB_HOST` environment variable or defaults to `localhost`.
-- **Port**: Defined by `DB_PORT` environment variable or defaults to `5432`.
+- **Controllers**
+- **Services**
+- **Routes**
+- **Models**
+- **Middleware**
+
+### Folder Structure
+src/
+|- controllers/
+|- database/
+|- interfaces/
+|- middleware/
+|- routes/
+|- services/
+|- utils/
+|- validation/
+|- config/
+|- tests/
+
+
+### Code Review Highlights
+- Removed unnecessary `try-catch` blocks and `else` conditions for clarity.
+- Employed mappers for better code organization.
+- Adhered to coding standards and best practices consistently.
+
+## Installation and Server Start Commands
+
+To install dependencies:
+npm i
+
+To start the server:
+npm run start
 
 ## Migrations
-
-Migrations are managed by Sequelize, and the configuration for Sequelize is located in `.sequelizerc`. The paths for models, migrations, and seeders are configured here.
-
-### Creating a Migration
-
-To create a new migration, use the Sequelize CLI with the following command:
-
-```bash
+Migrations are handled by Sequelize. To create a new migration, run:
 npx sequelize-cli migration:generate --name <migration-name>
+
+
