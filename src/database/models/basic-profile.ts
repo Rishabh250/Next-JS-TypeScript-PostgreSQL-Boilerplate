@@ -1,25 +1,25 @@
-import { UUID } from "crypto";
-import { DataTypes, Sequelize, Model } from "sequelize";
+import { UUID } from 'crypto';
+import { DataTypes, Sequelize, Model } from 'sequelize';
 
 interface BasicProfileAttributes {
-    public_id: UUID;
-    user_id: UUID;
-    first_name: string;
-    last_name:string;
-    name: string;
-    email: string;
-    mobile_number: string;
-    company_name: string;
-    subscription_plan: string;
-    subscription_status: Enumerator;
-    subscription_validity: Date;
-    created_by: UUID;
-    updated_by: UUID;
+  public_id: UUID
+  user_id: UUID
+  first_name: string
+  last_name: string
+  name: string
+  email: string
+  mobile_number: string
+  company_name: string
+  subscription_plan: string
+  subscription_status: Enumerator
+  subscription_validity: Date
+  created_by: UUID
+  updated_by: UUID
 }
 
 interface BasicProfileInstance extends Model<BasicProfileAttributes>, BasicProfileAttributes {}
 
-export default ( sequelize: Sequelize) => {
+export default (sequelize: Sequelize) => {
   const BasicProfile = sequelize.define<BasicProfileInstance>('basic_profile', {
     public_id: {
       type: DataTypes.UUID,
@@ -72,10 +72,10 @@ export default ( sequelize: Sequelize) => {
       allowNull: false
     },
     created_by: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUID
     },
     updated_by: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUID
     }
   })
 

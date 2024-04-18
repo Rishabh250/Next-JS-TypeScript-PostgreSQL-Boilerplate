@@ -8,7 +8,7 @@ const CONSTANTS: IConstants = {
     NOT_AUTHORIZED: 'Not authorized',
     NOT_FOUND: 'Not found',
     FORBIDDEN: 'Forbidden',
-    SERVICE_ERROR: 'Service error',
+    SERVICE_ERROR: 'Service error'
   },
   ERROR: 'error',
   STATUS_CODE: {
@@ -19,9 +19,9 @@ const CONSTANTS: IConstants = {
     UNAUTHORIZED: 401,
     FORBIDDEN: 403,
     NOT_FOUND: 404,
-    SERVER_ERROR: 500,
+    SERVER_ERROR: 500
   },
-  PASSWORD_PATTERN: new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+-]).+$'),
+  PASSWORD_PATTERN: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+-]).+$/,
   HEADERS: {
     PUBLIC_ID: 'public_id',
     TOTAL_RECORDS: 'total_records',
@@ -29,13 +29,13 @@ const CONSTANTS: IConstants = {
     PAGE: 'page',
     LIMIT: 'limit',
     ACCESS_TOKEN: 'access-token',
-    REFRESH_TOKEN: 'refresh-token',
+    REFRESH_TOKEN: 'refresh-token'
   },
   SALT: '10',
   SHA_256: 'sha256',
   SHA_512: 'sha512',
   PASSWORD_KEY_LENGTH: 64,
-  PASSWORD_ITERATIONS: 10000,
+  PASSWORD_ITERATIONS: 10000
 };
 
 export default CONSTANTS;

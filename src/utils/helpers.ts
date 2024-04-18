@@ -5,7 +5,7 @@ import { Service as DIService } from 'typedi';
 const { SALT, PASSWORD_ITERATIONS, PASSWORD_KEY_LENGTH, SHA_256 } = AppConstants;
 
 @DIService()
-class Helpers{
+class Helpers {
   public hashPassword = (password: string) => {
     const salt = crypto.randomBytes(Number(SALT)).toString('hex');
     const hash = crypto.pbkdf2Sync(password, SALT, PASSWORD_ITERATIONS, PASSWORD_KEY_LENGTH, SHA_256).toString('hex');

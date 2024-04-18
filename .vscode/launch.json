@@ -7,11 +7,12 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Authentication Service",
+            "runtimeExecutable": "npm",
+            "args": ["run", "start"],
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "/src/server.js"
         }
     ]
 }

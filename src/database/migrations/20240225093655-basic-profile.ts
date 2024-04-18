@@ -6,7 +6,7 @@ module.exports = {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       public_id: {
         type: DataTypes.UUID,
@@ -59,22 +59,22 @@ module.exports = {
         allowNull: false
       },
       created_by: {
-        type: DataTypes.UUID,
+        type: DataTypes.UUID
       },
       updated_by: {
-        type: DataTypes.UUID,
+        type: DataTypes.UUID
       },
       created_at: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW,
+        defaultValue: DataTypes.NOW
       },
       updated_at: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW,
-      },
+        defaultValue: DataTypes.NOW
+      }
     });
   },
-  down: async (queryInterface: QueryInterface) => await queryInterface.dropTable('basic_profile'),
+  down: async (queryInterface: QueryInterface) => { await queryInterface.dropTable('basic_profile'); }
 }

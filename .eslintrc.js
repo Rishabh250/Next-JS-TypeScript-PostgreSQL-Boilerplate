@@ -6,7 +6,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'eslint-config-love'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -56,7 +57,7 @@ module.exports = {
     'prefer-const': 'error',
     'prefer-destructuring': [ 'error', { array: true, object: true } ],
     'prefer-spread': 'error',
-    'indent': [ 'error', 2, { SwitchCase: 1 } ],
+    indent: [ 'error', 2, { SwitchCase: 1 } ],
     'newline-after-var': 'error',
     'array-bracket-spacing': [ 'error', 'always' ],
     'consistent-return': 'error',
@@ -67,8 +68,14 @@ module.exports = {
     'max-lines': [ 'error', { max: 600, skipBlankLines: true, skipComments: true } ],
     'no-irregular-whitespace': [ 'error', { skipTemplates: true, skipRegExps: true, skipComments: true } ],
     'object-curly-spacing': [ 'error', 'always', { arraysInObjects: true, objectsInObjects: true } ],
-    'radix': 'error',
+    radix: 'error',
     'newline-before-return': 'error',
-    'object-curly-newline': [ 'error', { consistent: true } ]
+    'object-curly-newline': [ 'error', { consistent: true } ],
+    '@typescript-eslint/semi': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/consistent-type-imports': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/return-await': 'off'
   }
-};
+}

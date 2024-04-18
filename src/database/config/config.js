@@ -1,8 +1,8 @@
-const dbName = process.env.DB_NAME || 'blogs_local';
-const dbUser = process.env.DB_USER || 'postgres';
-const dbPassword = process.env.DB_PASSWORD || '1234';
-const dbHost = process.env.DB_HOST || 'localhost';
-const dbPort = process.env.DB_PORT || 5432;
+const dbName = process.env.DB_NAME ?? 'blogs_local';
+const dbUser = process.env.DB_USER ?? 'postgres';
+const dbPassword = process.env.DB_PASSWORD ?? '1234';
+const dbHost = process.env.DB_HOST ?? 'localhost';
+const dbPort = process.env.DB_PORT ?? 5432;
 
 module.exports = {
   development: {
@@ -11,7 +11,7 @@ module.exports = {
     database: dbName,
     host: dbHost,
     port: dbPort,
-    dialect: 'postgres',
+    dialect: 'postgres'
   },
   test: {
     username: dbUser,
@@ -19,7 +19,7 @@ module.exports = {
     database: dbName,
     host: dbHost,
     port: dbPort,
-    dialect: 'postgres',
+    dialect: 'postgres'
   },
   production: {
     username: dbUser,
@@ -27,6 +27,6 @@ module.exports = {
     database: dbName,
     host: dbHost,
     port: dbPort,
-    dialect: 'postgres',
-  },
+    dialect: 'postgres'
+  }
 };

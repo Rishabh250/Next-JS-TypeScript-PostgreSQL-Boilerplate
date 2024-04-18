@@ -1,8 +1,8 @@
 interface IUserCreate {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
+  firstName: string
+  lastName: string
+  email: string
+  password: string
 }
 
-export { IUserCreate };
+export type { IUserCreate };

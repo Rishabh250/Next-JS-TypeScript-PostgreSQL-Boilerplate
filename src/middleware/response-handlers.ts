@@ -6,9 +6,7 @@ import AppConstants from '../utils/constant';
 const { RESPONSE_ERROR: { SERVER_ERROR, INTERNAL_SERVER_ERROR, NOT_AUTHORIZED, NOT_FOUND, FORBIDDEN }, ERROR } = AppConstants;
 
 export const responseMiddleware = (req: Request, res: Response, next: NextFunction): void => {
-
   res.postRequest = () => {
-
     return res.status(201).json();
   }
   res.getRequest = (data: any) => {

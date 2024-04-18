@@ -29,6 +29,9 @@
       "eslint.validate": [
         "javascript"
       ],
+      "cSpell.words": [
+        "typedi"
+      ],
 }
   
     

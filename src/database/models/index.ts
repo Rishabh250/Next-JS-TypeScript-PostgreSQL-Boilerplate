@@ -7,10 +7,10 @@ import { Sequelize } from 'sequelize';
 const basename = path.basename(__filename);
 
 interface Db {
-    [key: string]: any;
-    sequelize?: Sequelize;
-    Sequelize?: typeof Sequelize;
-  }
+  [key: string]: any
+  sequelize?: Sequelize
+  Sequelize?: typeof Sequelize
+}
 
 const db: Db = {};
 

@@ -1,24 +1,24 @@
-import { Service as DIService } from 'typedi';
+import { Service as DIService, Inject } from 'typedi';
 import { Router } from 'express';
-import UserController  from '../controllers/user';
+import UserController from '../controllers/user';
 
 @DIService()
 export class UserRoutes {
   public router: Router;
 
-  constructor(userController: UserController) {
+  constructor (@Inject() private readonly userController: UserController) {
     this.router = Router();
-    this.initializeRoutes(userController);
+    this.initializeRoutes();
   }
 
-  private initializeRoutes(userController: UserController): void {
-    this.router.post('/user', userController.create);
-    this.router.get('/users', userController.getList);
-    this.router.get('/user', userController.getDetailsById);
-    this.router.put('/user', userController.update);
+  private initializeRoutes (): void {
+    this.router.post('/user', async (req, res) => this.userController.create(req, res));
+    this.router.get('/users', async (req, res) => this.userController.getList(req, res));
+    this.router.get('/user', async (req, res) => this.userController.getDetailsById(req, res));
+    this.router.put('/user', async (req, res) => this.userController.update(req, res));
   }
 
-  public getRouter(): Router {
+  public getRouter (): Router {
     return this.router;
   }
 }
